@@ -1,12 +1,11 @@
 import {useCallback} from 'react';
 import {Platform} from 'react-native';
-import {useConfig} from '../../config/ConfigConsumer';
 import {useSelector} from 'react-redux';
 
 import isEmpty from 'lodash.isempty';
 import fetch from './fetch';
-import useLogoutAccount from '../../../account/hooks/useLogoutAccount';
 import useFlashMessage from '../../hooks/useFlashMessage';
+import {baseUrl as baseURL} from '../../constants/c_api';
 
 const waitForInteraction = () => {
   return new Promise(resolve => {
@@ -15,17 +14,16 @@ const waitForInteraction = () => {
 };
 
 export default function useFetch(fetchFn) {
-  const {config} = useConfig();
-  const {accessToken} = useSelector(state => state.tokenReducer);
+  const {accessToken} = useSelector(state => state?.tokenReducer) || '';
   const {errorMessage} = useFlashMessage();
 
-  const handleLogout = useLogoutAccount();
+  const handleLogout = useCallback(() => console.log('Logout'), []);
 
   const handleFetch = useCallback(
     async args => {
       function polyfillFetchConfig(baseConfig) {
         return {
-          baseURL: config.baseUrl,
+          baseURL,
           ignoreError: false,
           showError: baseConfig.method === 'GET' ? false : true,
           ...baseConfig,
@@ -66,7 +64,7 @@ export default function useFetch(fetchFn) {
         throw err;
       });
     },
-    [accessToken, config.baseUrl, errorMessage, fetchFn, handleLogout],
+    [accessToken, errorMessage, fetchFn, handleLogout],
   );
   return handleFetch;
 }

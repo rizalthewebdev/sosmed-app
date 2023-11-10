@@ -1,6 +1,5 @@
 import {useCallback} from 'react';
 import {showMessage} from 'react-native-flash-message';
-import Colors from '../utils/Colors';
 
 export default function useFlashMessage() {
   const errorMessage = useCallback(message => {
@@ -27,7 +26,7 @@ export default function useFlashMessage() {
     return showMessage({
       message: error,
       type: 'danger',
-      backgroundColor: Colors.DANGER_COLOR,
+      backgroundColor: '#8E0A0A',
     });
   }, []);
 
@@ -35,7 +34,7 @@ export default function useFlashMessage() {
     showMessage({
       message: message?.response ? message?.response?.data?.message : message,
       type: 'success',
-      backgroundColor: Colors.SUCCESS_COLOR,
+      backgroundColor: '#34A320',
       icon: 'success',
       position: 'top',
     });
