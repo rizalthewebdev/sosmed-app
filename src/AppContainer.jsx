@@ -12,8 +12,6 @@ import FlashMessage from 'react-native-flash-message';
 import AppNavigator from './shared/routes/AppNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NavigationContainer} from '@react-navigation/native';
-import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {gStyles} from './shared/styles/gStyles';
 import {PaperProvider} from 'react-native-paper';
 
 const queryClient = new QueryClient({
@@ -45,7 +43,7 @@ persistQueryClient({
   },
 });
 
-export default function App() {
+export default function AppContainer() {
   const flashMessageRef = useRef();
 
   const [isAppReady, setIsAppReady] = useState(false);
@@ -60,22 +58,16 @@ export default function App() {
     <SplashProvider {...{isAppReady}}>
       <Provider {...{store}}>
         <PersistGate loading={null} {...{persistor}}>
-          <GestureHandlerRootView style={[gStyles.flex1]}>
-            <PaperProvider>
-              <SafeAreaProvider>
-                <QueryClientProvider client={queryClient}>
-                  <NavigationContainer>
-                    <AppNavigator />
-                    <FlashMessage
-                      position="bottom"
-                      floating
-                      ref={flashMessageRef}
-                    />
-                  </NavigationContainer>
-                </QueryClientProvider>
-              </SafeAreaProvider>
-            </PaperProvider>
-          </GestureHandlerRootView>
+          <PaperProvider>
+            <SafeAreaProvider>
+              <QueryClientProvider client={queryClient}>
+                <NavigationContainer>
+                  <AppNavigator />
+                  <FlashMessage position="top" floating ref={flashMessageRef} />
+                </NavigationContainer>
+              </QueryClientProvider>
+            </SafeAreaProvider>
+          </PaperProvider>
         </PersistGate>
       </Provider>
     </SplashProvider>

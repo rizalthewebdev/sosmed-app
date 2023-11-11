@@ -6,7 +6,7 @@ export default function useFlashMessage() {
     var error = '';
     if (message?.response) {
       if (
-        message?.response?.data?.message?.includes('Unauthorized') ||
+        message?.response?.data?.message?.includes('Unauthenticated') ||
         message?.response?.data?.message?.includes('jwt')
       ) {
         error = 'Session telah habis. Silahkan melakukan login ulang.';

@@ -132,16 +132,19 @@ export const gStyles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 60,
   },
+  fontLight: {
+    fontFamily: 'Rubik-Light',
+  },
+  fontRegular: {
+    fontFamily: 'Rubik-Regular',
+  },
   fontMedium: {
-    fontWeight: '500',
     fontFamily: 'Rubik-Medium',
   },
   fontSemiBold: {
-    fontWeight: '600',
     fontFamily: 'Rubik-SemiBold',
   },
   fontBold: {
-    fontWeight: '700',
     fontFamily: 'Rubik-Bold',
   },
 });

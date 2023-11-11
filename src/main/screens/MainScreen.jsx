@@ -1,36 +1,24 @@
 import React from 'react';
-import {Appbar} from 'react-native-paper';
+import AppHeader from '../components/AppHeader';
+import CreatePostButton from '../../post/components/CreatePostButton';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {gStyles} from '../../shared/styles/gStyles';
-import {useDispatch} from 'react-redux';
-import {logout} from '../../shared/redux/actions/authActions';
+import PostList from '../components/PostList';
 import {useNavigation} from '@react-navigation/native';
 
 const MainScreen = () => {
-  const dispatch = useDispatch();
-  const {reset} = useNavigation();
+  const {navigate} = useNavigation();
 
-  const handleLogout = () => {
-    dispatch(logout());
-    reset({
-      index: 0,
-      routes: [
-        {
-          name: 'LoginScreen',
-        },
-      ],
-    });
+  const handleNavigateToCreatePost = () => {
+    navigate('CreatePostScreen');
   };
 
   return (
-    <>
-      <Appbar.Header>
-        <Appbar.Content
-          title="Manusa Media"
-          titleStyle={[gStyles.fontSemiBold]}
-        />
-        <Appbar.Action icon="logout" onPress={handleLogout} />
-      </Appbar.Header>
-    </>
+    <SafeAreaView style={gStyles.flex1}>
+      <AppHeader />
+      <PostList />
+      <CreatePostButton onPress={handleNavigateToCreatePost} />
+    </SafeAreaView>
   );
 };
 

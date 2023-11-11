@@ -5,7 +5,7 @@ const initialState = {
   user: {},
 };
 
-function authReducer(state = initialState, action) {
+function AuthReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
       return {
@@ -32,4 +32,4 @@ function authReducer(state = initialState, action) {
   }
 }
 
-export default authReducer;
+export default AuthReducer;

@@ -10,7 +10,7 @@ const TextView = props => {
       {...props}
       style={[
         styles.Rubik,
-        bold && {fontFamily: 'Rubik-SemiBold', fontWeight: '600'},
+        bold && {fontFamily: 'Rubik-SemiBold', fontWeight: '700'},
         style,
       ]}>
       {text ?? children ?? ''}
@@ -20,7 +20,7 @@ const TextView = props => {
 
 const styles = StyleSheet.create({
   Rubik: {
-    fontFamily: 'Rubik-Medium',
+    fontFamily: 'Rubik-Regular',
     fontSize: 14,
     color: 'black',
   },

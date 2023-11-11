@@ -12,8 +12,10 @@ import useMutateUserRegister from '../hooks/useMutateUserRegister';
 const AuthSection = ({type = 'register', data, setData}) => {
   const {navigate} = useNavigation();
   const validate = useValidateAuth(type);
-  const {mutateAsync: handleLoginUser} = useMutateUserLogin();
-  const {mutateAsync: handleUserRegister} = useMutateUserRegister();
+  const {mutateAsync: handleLoginUser, isLoading: isLoginLading} =
+    useMutateUserLogin();
+  const {mutateAsync: handleUserRegister, isLoading: isRegisterLoading} =
+    useMutateUserRegister();
   const [isShowPassword, setIsShowPassword] = useState(false);
 
   const dataByType = {
@@ -85,6 +87,7 @@ const AuthSection = ({type = 'register', data, setData}) => {
           onPress={handleAuthentication}
           style={[gStyles.ma4, {}]}
           buttonColor="#111"
+          loading={isRegisterLoading || isLoginLading}
           mode="contained">
           <TextView style={{color: 'white'}} text={dataByType[type].button} />
         </Button>

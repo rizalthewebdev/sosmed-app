@@ -6,6 +6,7 @@ import isEmpty from 'lodash.isempty';
 import fetch from './fetch';
 import useFlashMessage from '../../hooks/useFlashMessage';
 import {baseUrl as baseURL} from '../../constants/c_api';
+import useHandleLogout from '../../hooks/useHandleLogout';
 
 const waitForInteraction = () => {
   return new Promise(resolve => {
@@ -14,10 +15,10 @@ const waitForInteraction = () => {
 };
 
 export default function useFetch(fetchFn) {
-  const {accessToken} = useSelector(state => state?.tokenReducer) || '';
+  const {accessToken} = useSelector(state => state?.TokenReducer) || '';
   const {errorMessage} = useFlashMessage();
 
-  const handleLogout = useCallback(() => console.log('Logout'), []);
+  const handleLogout = useHandleLogout();
 
   const handleFetch = useCallback(
     async args => {
@@ -52,7 +53,7 @@ export default function useFetch(fetchFn) {
             errorMessage(err);
           }
           if (
-            err.response?.data?.message?.includes('Unauthorized') ||
+            err.response?.data?.message?.includes('Unauthenticated') ||
             err.response?.data?.message?.includes('jwt')
           ) {
             handleLogout();
