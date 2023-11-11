@@ -1,53 +1,26 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {Text} from 'react-native-paper';
 
 const TextView = props => {
-  const {
-    text,
-    children,
-    anotherText,
-    bold,
-    style,
-    onPress,
-    containerStyle,
-    additionalText,
-    additionalTextStyle,
-    additionalTextBold,
-    additionalTextOnPress,
-  } = props;
+  const {text, children, bold, style} = props;
   return (
-    <View
-      onPress={onPress}
-      style={containerStyle == null ? null : containerStyle}>
-      <Text
-        {...props}
-        style={[
-          styles.Inter,
-          bold && {fontFamily: 'Inter-Bold', fontWeight: 'bold'},
-          style,
-        ]}>
-        {text ?? children ?? ''}
-        <Text
-          onPress={additionalTextOnPress}
-          style={[
-            additionalTextStyle,
-            additionalTextBold && {
-              fontFamily: 'Inter-Bold',
-              fontWeight: 'bold',
-            },
-          ]}>
-          {additionalText}
-        </Text>
-        {anotherText}
-      </Text>
-    </View>
+    <Text
+      {...props}
+      style={[
+        styles.Rubik,
+        bold && {fontFamily: 'Rubik-SemiBold', fontWeight: '700'},
+        style,
+      ]}>
+      {text ?? children ?? ''}
+    </Text>
   );
 };
 
 const styles = StyleSheet.create({
-  Inter: {
-    fontFamily: 'Inter-Medium',
+  Rubik: {
+    fontFamily: 'Rubik-Regular',
     fontSize: 14,
     color: 'black',
   },

@@ -1,16 +1,24 @@
 import React from 'react';
+import AppHeader from '../components/AppHeader';
+import CreatePostButton from '../../post/components/CreatePostButton';
+import {SafeAreaView} from 'react-native-safe-area-context';
 import {gStyles} from '../../shared/styles/gStyles';
-import {Text, View} from 'react-native';
+import PostList from '../components/PostList';
+import {useNavigation} from '@react-navigation/native';
 
 const MainScreen = () => {
+  const {navigate} = useNavigation();
+
+  const handleNavigateToCreatePost = () => {
+    navigate('CreatePostScreen');
+  };
+
   return (
-    <View style={[gStyles.flex1, gStyles.flexCenter]}>
-      <Text style={{fontFamily: 'Rubik-Bold', color: 'black'}}>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, id!
-        Mollitia animi est facere quas eaque doloribus placeat. Eveniet,
-        ducimus.
-      </Text>
-    </View>
+    <SafeAreaView style={gStyles.flex1}>
+      <AppHeader />
+      <PostList />
+      <CreatePostButton onPress={handleNavigateToCreatePost} />
+    </SafeAreaView>
   );
 };
 

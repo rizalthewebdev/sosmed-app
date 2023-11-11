@@ -4,12 +4,12 @@ const initialState = {
   accessToken: '',
 };
 
-function tokenReducer(state = initialState, action) {
+function TokenReducer(state = initialState, action) {
   switch (action.type) {
     case LOGIN:
       return {
         ...state,
-        accessToken: action.token.accessToken,
+        accessToken: action.token,
       };
 
     case LOGOUT:
@@ -23,4 +23,4 @@ function tokenReducer(state = initialState, action) {
   }
 }
 
-export default tokenReducer;
+export default TokenReducer;

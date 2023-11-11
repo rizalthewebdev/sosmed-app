@@ -1,5 +1,5 @@
 import React from 'react';
-import AppContainer from './src/shared/AppContainer';
+import AppContainer from './src/AppContainer';
 
 export default function App() {
   return <AppContainer />;
